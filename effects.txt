@@ -1,0 +1,71 @@
+# Radar
+ #user {
+    position: relative;
+    font-family: 'Orbitron', sans-serif; /* sci-fi, cockpit vibe */
+    color: #00ff88; /* bright green radar color */
+    text-transform: uppercase;
+    letter-spacing: 2mm;
+    text-align: center;
+    z-index: -1;
+    overflow: visible;
+  }
+
+  /* Radar sweep effect behind the text */
+  #user::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    background: conic-gradient(
+      from 0deg,
+      rgba(0, 255, 0, 0.3) 0deg 60deg,
+      transparent 60deg 360deg
+    );
+    border-radius: 50%;
+    transform-origin: center;
+    animation: radar-sweep 3s linear infinite;
+    filter: drop-shadow(0 0 8px #0f0);
+    z-index: -1;
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes radar-sweep {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+# Blip
+   #user {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ff88;
+    letter-spacing: 0.15em;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #user::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 255, 0, 0.1),
+      rgba(0, 255, 0, 0.1) 2px,
+      rgba(0, 255, 0, 0.2) 4px,
+      rgba(0, 255, 0, 0.2) 6px
+    );
+    pointer-events: none;
+    animation: scan-move 2s linear infinite;
+  }
+
+  @keyframes scan-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 6px; }
+  }
